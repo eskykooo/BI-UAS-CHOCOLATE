@@ -26,19 +26,21 @@ class Dashboard {
 
     public function getTopProducts($filters = []) {
         $where = $this->buildWhere($filters);
-        $sql = "SELECT dp.Product_Type, SUM(fs.Units_Sold) as total_units 
-                FROM fact_sales fs JOIN dim_product dp ON fs.product_id = dp.product_id 
+        $sql = "SELECT dp.Product_Type, dp.Brand, SUM(fs.Units_Sold) as total_units 
+                FROM fact_sales fs 
+                JOIN dim_product dp ON fs.product_id = dp.product_id 
                 JOIN dim_date dd ON fs.date_id = dd.date_id
                 JOIN dim_region dr ON fs.region_id = dr.region_id
-                JOIN dim_channel dc ON fs.channel_id = dc.channel_id " . $where . " GROUP BY dp.Product_Type ORDER BY total_units DESC LIMIT 10";
-        $this->db->query($sql); return $this->db->resultSet();
+                JOIN dim_channel dc ON fs.channel_id = dc.channel_id " . $where . " 
+                GROUP BY dp.Product_Type, dp.Brand ORDER BY total_units DESC LIMIT 10";
+        $this->db->query($sql); 
+        return $this->db->resultSet();
     }
 
     public function getRevenueTrend($filters = []) {
         $where = $this->buildWhere($filters);
-        
         if (empty($filters['month'])) {
-            // Jika kosong, tampilkan semua bulan yang diurutkan sebagai angka (UNSIGNED)
+            // Urutkan berdasarkan angka bulan secara numerik
             $sql = "SELECT dd.Month AS time_period, SUM(fs.Revenue_USD) as revenue 
                     FROM fact_sales fs JOIN dim_date dd ON fs.date_id = dd.date_id 
                     JOIN dim_product dp ON fs.product_id = dp.product_id
@@ -46,16 +48,16 @@ class Dashboard {
                     JOIN dim_channel dc ON fs.channel_id = dc.channel_id " . $where . " 
                     GROUP BY dd.Month ORDER BY CAST(dd.Month AS UNSIGNED) ASC";
         } else {
-            // Jika ada filter bulan, tampilkan per minggu
+            // Urutkan berdasarkan urutan hari dalam bulan tersebut
             $sql = "SELECT CONCAT('Minggu ', CEIL(DAY(dd.Date)/7)) AS time_period, SUM(fs.Revenue_USD) as revenue 
                     FROM fact_sales fs JOIN dim_date dd ON fs.date_id = dd.date_id 
                     JOIN dim_product dp ON fs.product_id = dp.product_id
                     JOIN dim_region dr ON fs.region_id = dr.region_id
                     JOIN dim_channel dc ON fs.channel_id = dc.channel_id " . $where . " 
-                    GROUP BY time_period ORDER BY time_period ASC";
+                    GROUP BY time_period ORDER BY MIN(dd.Date) ASC";
         }
-
-        $this->db->query($sql); return $this->db->resultSet();
+        $this->db->query($sql); 
+        return $this->db->resultSet();
     }
 
     public function getFilterOptions() {
