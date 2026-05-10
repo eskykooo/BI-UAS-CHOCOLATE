@@ -65,6 +65,82 @@
     </div>
 </div>
 
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 animate-fade-in-up animate-delay-4">
+    <!-- Produk Paling Laris -->
+    <div class="glass-panel p-8 flex justify-between items-center group">
+        <div>
+            <p class="text-luxury-muted text-xs font-bold uppercase tracking-[0.2em] mb-2">
+                Produk Paling Laris
+            </p>
+            <p class="text-2xl font-bold text-luxury-latte leading-tight">
+                <?= $data['top_products'][0]['Brand'] ?? '-' ?>
+            </p>
+            <p class="text-sm text-slate-400 mt-1">
+                <?= $data['top_products'][0]['Product_Type'] ?? '-' ?>
+            </p>
+            <p class="text-sm text-emerald-400 font-semibold mt-2">
+                <?= number_format($data['top_products'][0]['total_units'] ?? 0) ?> Pcs
+            </p>
+        </div>
+        <div class="w-16 h-16 rounded-full bg-luxury-latte/10 flex items-center justify-center text-luxury-latte border border-luxury-latte/20 shadow-[0_0_20px_rgba(197,154,108,0.1)]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M7 4h10l-1 4H8L7 4zm1 16h8">
+                </path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Brand Terlaris -->
+    <div class="glass-panel p-8 flex justify-between items-center group">
+        <div>
+            <p class="text-luxury-muted text-xs font-bold uppercase tracking-[0.2em] mb-2">
+                Brand Terlaris
+            </p>
+            <p class="text-2xl font-bold text-white leading-tight">
+                <?= $data['top_products'][0]['Brand'] ?? '-' ?>
+            </p>
+            <p class="text-sm text-slate-400 mt-1">
+                Best Selling Brand
+            </p>
+        </div>
+        <div class="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 border border-amber-500/20 shadow-[0_0_20px_rgba(251,191,36,0.1)]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M5 3l2 6h10l2-6M4 9h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V9zm6 4h4">
+                </path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Kontribusi Produk -->
+    <div class="glass-panel p-8 flex justify-between items-center group">
+        <div>
+            <p class="text-luxury-muted text-xs font-bold uppercase tracking-[0.2em] mb-2">
+                Kontribusi Penjualan
+            </p>
+            <?php
+                $topUnits = $data['top_products'][0]['total_units'] ?? 0;
+                $totalUnits = $data['summary']['total_units'] ?? 1;
+                $percentage = $totalUnits > 0 ? ($topUnits / $totalUnits) * 100 : 0;
+            ?>
+            <p class="text-4xl font-bold text-emerald-400">
+                <?= number_format($percentage, 1) ?>%
+            </p>
+            <p class="text-sm text-slate-400 mt-1">
+                Dari total unit terjual
+            </p>
+        </div>
+        <div class="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M3 17l6-6 4 4 8-8M21 21H3V3">
+                </path>
+            </svg>
+        </div>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 animate-fade-in-up animate-delay-4">
     <div class="glass-panel p-8 min-h-[420px] flex flex-col">
         <h3 class="text-lg font-light tracking-wide text-white mb-6">Analisis Tren <span class="font-bold text-luxury-latte"><?= $data['time_label']; ?></span></h3>
@@ -111,14 +187,26 @@ document.addEventListener('DOMContentLoaded', function() {
         options: {
             maintainAspectRatio: false,
             responsive: true,
-            plugins: { legend: { display: false } },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
-                y: { 
-                    beginAtZero: true, 
-                    grid: { color: 'rgba(255,255,255,0.05)' },
-                    ticks: { callback: value => '$' + value.toLocaleString() }
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(255,255,255,0.05)'
+                    },
+                    ticks: {
+                        callback: value => '$' + value.toLocaleString()
+                    }
                 },
-                x: { grid: { display: false } }
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
             }
         }
     });
@@ -128,7 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(prodCtx, {
         type: 'doughnut',
         data: {
-            labels: <?= json_encode(array_column($data['top_products'], 'Product_Type')); ?>,
+            // Hanya menampilkan Brand agar legend tidak menabrak
+            labels: <?= json_encode(array_map(function($item) {
+                return $item['Brand'];
+            }, $data['top_products'])); ?>,
             datasets: [{
                 data: <?= json_encode(array_column($data['top_products'], 'total_units')); ?>,
                 backgroundColor: lattePalette,
@@ -143,8 +234,25 @@ document.addEventListener('DOMContentLoaded', function() {
             cutout: '75%',
             plugins: {
                 legend: {
-                    position: 'right',
-                    labels: { color: '#a8a29e', usePointStyle: true, padding: 20, font: { size: 12 } }
+                    position: 'bottom',
+                    labels: {
+                        color: '#a8a29e',
+                        usePointStyle: true,
+                        padding: 12,
+                        boxWidth: 10,
+                        font: {
+                            size: 11
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const item = <?= json_encode($data['top_products']); ?>[context.dataIndex];
+                            return item.Brand + ' - ' + item.Product_Type + ': ' +
+                                   context.raw.toLocaleString() + ' pcs';
+                        }
+                    }
                 }
             }
         }
