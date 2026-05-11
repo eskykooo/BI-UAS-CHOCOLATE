@@ -6,6 +6,9 @@
 |   NAJMI HAFIZH MAULUDAN ZAIN   |  2409116028  |
 |   RIZQY   |  2409116039  |
 
+---
+
+![Tampilan Dashboard CHOCO EIS](<img width="1365" height="1289" alt="screencapture-localhost-bi-uas-chocolate-public-dashboard-2026-05-11-23_43_08" src="https://github.com/user-attachments/assets/0a7390b5-7aef-494a-af66-68b94c4ca720" />)
 
 ---
 
@@ -33,6 +36,8 @@ CHOCO EIS berfungsi sebagai pusat kendali data (*command center*) bagi eksekutif
 
 ---
 
+![Screenshot Halaman Login](<img width="1920" height="957" alt="screencapture-localhost-bi-uas-chocolate-public-2026-05-12-00_21_35" src="https://github.com/user-attachments/assets/f68454e1-1421-41a6-a741-fe3773e54e34" />)
+
 ## Fitur Lengkap
 
 ### Dashboard Eksekutif (*Executive Overview*)
@@ -47,6 +52,9 @@ Halaman utama yang menyajikan gambaran menyeluruh kondisi bisnis dalam satu tamp
 - **Pangsa Pasar Produk** — *Doughnut chart* yang menampilkan distribusi penjualan antar produk/brand
 - **Automated Strategic Insight** — Narasi analisis otomatis yang menyoroti tren positif (misalnya "Revenue naik 25%"), peringatan penurunan, atau produk dominan di pasar
 
+![Screenshot Dashboard Eksekutif](<img width="1365" height="1289" alt="screencapture-localhost-bi-uas-chocolate-public-dashboard-2026-05-11-23_43_08" src="https://github.com/user-attachments/assets/d50224e0-4be2-42ae-a8e5-9e376fa1224c" />
+)
+
 ### Analisis Produk & Brand
 Halaman khusus untuk mengevaluasi performa portofolio produk:
 
@@ -56,12 +64,18 @@ Halaman khusus untuk mengevaluasi performa portofolio produk:
 - **Performa Brand Teratas** — Tabel peringkat brand berdasarkan total revenue
 - **Insight Otomatis** — Rekomendasi strategis seperti brand yang memimpin pasar dan produk yang perlu perhatian khusus
 
+![Screenshot Analisis Produk & Brand](<img width="1920" height="1152" alt="screencapture-localhost-bi-uas-chocolate-public-products-2026-05-11-23_43_53" src="https://github.com/user-attachments/assets/2c379b83-713e-4e08-957f-7ef387f7a794" />
+)
+
 ### Analisis Pasar & Regional
 Halaman untuk memahami kontribusi pendapatan dari berbagai wilayah:
 
 - **Grafik Revenue per Negara** — *Bar chart* yang membandingkan pendapatan antar negara
 - **Tabel Data Per Negara** — Detail revenue dan unit terjual per negara dalam bentuk tabel
 - **Insight Regional Otomatis** — Analisis negara dengan kontribusi terbesar dan rekomendasi strategis untuk ekspansi logistik
+
+![Screenshot Analisis Pasar & Regional](<img width="1365" height="957" alt="localhost_bi-uas-chocolate_public_regions (1)" src="https://github.com/user-attachments/assets/9d9eb1f9-bf91-4eb3-bb69-96eacd6770f9" />
+)
 
 ### Analisis Sales Channel
 Halaman untuk mengevaluasi efektivitas saluran distribusi:
@@ -70,12 +84,18 @@ Halaman untuk mengevaluasi efektivitas saluran distribusi:
 - **Distribusi Volume (Units)** — *Doughnut chart* pangsa pasar volume penjualan per channel
 - **Tabel Detail Channel** — Data lengkap revenue dan unit untuk setiap sales channel
 
+![Screenshot Analisis Sales Channel](<img width="1920" height="1009" alt="screencapture-localhost-bi-uas-chocolate-public-channels-2026-05-11-23_45_35" src="https://github.com/user-attachments/assets/c4a8cf92-fbb9-4cfd-9e46-31987246b1fd" />
+)
+
 ### Analisis Metode Pembayaran
 Halaman untuk memahami preferensi transaksi pelanggan:
 
 - **Grafik Preferensi Pembayaran** — *Doughnut chart* distribusi jumlah transaksi per metode pembayaran
 - **Detail Transaksi Pembayaran** — Tabel yang menampilkan jumlah transaksi dan total revenue per metode
 - **Insight Pembayaran Otomatis** — Analisis metode pembayaran paling populer dan rekomendasi stabilitas gateway
+
+![Screenshot Analisis Metode Pembayaran](<img width="1920" height="957" alt="screencapture-localhost-bi-uas-chocolate-public-payments-2026-05-11-23_45_48" src="https://github.com/user-attachments/assets/df48a0b7-6969-48dc-9653-83a891b019d1" />
+)
 
 ### Laporan Transaksi
 Halaman untuk melihat data penjualan secara detail dalam bentuk tabel:
@@ -84,6 +104,9 @@ Halaman untuk melihat data penjualan secara detail dalam bentuk tabel:
 - **Filter Interaktif** — Menyaring data berdasarkan bulan, produk, negara, dan channel
 - **Ekspor Excel** — Mendownload data transaksi sebagai file `.xls` yang bisa dibuka di Microsoft Excel atau Google Sheets
 - **Cetak / PDF** — Mencetak laporan transaksi ke format PDF melalui fitur print browser
+
+![Screenshot Laporan Transaksi](<img width="1365" height="957" alt="localhost_bi-uas-chocolate_public_reports (1)" src="https://github.com/user-attachments/assets/d6999b0b-9797-4a6e-9701-76b38fbabdf0" />
+)
 
 ---
 
