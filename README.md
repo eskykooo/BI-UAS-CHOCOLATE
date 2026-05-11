@@ -1,14 +1,11 @@
-## Kelompok
+## Kelompok 22 - SISTEM INFORMASI
 
 | Nama | NIM |
 |------|-----|
-|      |     |
-|      |     |
-|      |     |
-|      |     |
-|      |     |
-|      |     |
-|      |     |
+|   HENDRI ZAIDAN SAFITRA   |  2409116013   |
+|   NAJMI HAFIZH MAULUDAN ZAIN   |  2409116028  |
+|   RIZQY   |  2409116039  |
+
 
 ---
 
